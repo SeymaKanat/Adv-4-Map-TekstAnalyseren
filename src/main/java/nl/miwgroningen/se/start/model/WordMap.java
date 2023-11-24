@@ -50,4 +50,10 @@ public class WordMap {
     public int getWordCount(String word) {
         return wordMap.getOrDefault(word, 0);
     }
+
+    public List<Integer> getWordLineNrs(String word) {
+        return Collections.singletonList(wordMap.get(word));
+    }
+
+
 }
