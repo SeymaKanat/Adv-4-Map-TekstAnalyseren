@@ -1,9 +1,11 @@
 package nl.miwgroningen.se.start.controller;
 
+import nl.miwgroningen.se.start.model.Vakken;
 import nl.miwgroningen.se.start.model.WordLinesMap;
 import nl.miwgroningen.se.start.model.WordMap;
 import nl.miwgroningen.se.start.model.WordSet;
 
+import java.io.FileNotFoundException;
 import java.sql.SQLOutput;
 import java.util.Iterator;
 import java.util.List;
@@ -17,22 +19,59 @@ public class Launcher {
 
     public static void main(String[] args) {
 
-//        WordLineClass
-        WordLinesMap wordLinesMap = new WordLinesMap();
-        wordLinesMap.readFromFile("src/main/resources/MaxHavelaar.txt");
+//       Opdracht 4.2
+        Vakken vakken = new Vakken();
 
-        System.out.println("Number of unique words: " + wordLinesMap.getNrOfUniqueWords());
+        try {
+            vakken.readFromFile("src/main/resources/vakcodes.txt");
+        } catch (FileNotFoundException e) {
 
-        System.out.println("Words in alphabetical order with line numbers:");
-        for (String word : wordLinesMap.getWordsSorted()) {
-            List<Integer> lineNumbers = wordLinesMap.getWordLineNrs(word);
-            System.out.println(word + ": " + lineNumbers);
+            e.printStackTrace();
         }
 
+        vakken.printAlleVakcodes();
+        vakken.printAlleECTSWaardes();
+        vakken.printSomAlleECTS();
+        vakken.printKeyValuePairs();
+    }
+}
 
 
+//        doTest1(vakken);
+//        doTest2(vakken);
+//        doTest3(vakken);
+//    }
+//    private static void doTest1(Vakken vakken) {
+//        System.out.println("Vakcodes " + vakken.getVakMap().keySet());
+//        System.out.println();
+//    }
+//    private static void doTest2(Vakken vakken) {
+//        System.out.println("ECTS " + vakken.getVakMap().values());
+//        System.out.println();
+//    }
+//    private static void doTest3(Vakken vakken) {
+//        System.out.println("Print sum of ects");
+//        int sum = 0;
+//        for ( int ects : vakken.getVakMap().values() ) {
+//            sum += ects;
+//        }
+//        System.out.println("ECTS sum " + sum );
+//        System.out.println();
+//
+//    }
 
 
+//        WordLineClass
+//        WordLinesMap wordLinesMap = new WordLinesMap();
+//        wordLinesMap.readFromFile("src/main/resources/MaxHavelaar.txt");
+//
+//        System.out.println("Number of unique words: " + wordLinesMap.getNrOfUniqueWords());
+//
+//        System.out.println("Words in alphabetical order with line numbers:");
+//        for (String word : wordLinesMap.getWordsSorted()) {
+//            List<Integer> lineNumbers = wordLinesMap.getWordLineNrs(word);
+//            System.out.println(word + ": " + lineNumbers);
+//        }
 
 //WordMap Class
 //        WordMap wordMap = new WordMap();
@@ -65,5 +104,4 @@ public class Launcher {
 //            System.out.println(word);
 //        }
 //
-    }
-}
+

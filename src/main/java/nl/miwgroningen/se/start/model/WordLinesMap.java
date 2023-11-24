@@ -54,6 +54,17 @@ public class WordLinesMap {
     public List<Integer> getWordLineNrs(String word) {
         return wordmap.getOrDefault(word.toLowerCase(), Collections.emptyList());
     }
+
+    public int getTotalNrOfWords(){
+        int totalWords = 0;
+
+        for(List<Integer> lineNumbers : wordmap.values()){
+            totalWords+= lineNumbers.size();
+        }
+        return totalWords;
+
+    }
+
 }
 
 
